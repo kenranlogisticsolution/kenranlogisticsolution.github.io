@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PT. Kenran Logistic Solution - Website Master Documentation</title>
+    <link rel="icon" type="image/png" href="assets/favicon-kag-logistic.png">
+    <link rel="apple-touch-icon" href="assets/favicon-kag-logistic.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- GSAP for Smooth Professional Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Lenis Smooth Scroll Setup -->
+    <script src="https://cdn.jsdelivr.net/gh/darkroomengineering/lenis@1.0.27/dist/lenis.min.js"></script>
+    <style>
+        /* Custom Modern Utility Styles to Supplement Tailwind v4 setup */
+        :root {
+            --color-navy: #0f172a;      /* Deep Navy Blue */
+            --color-gold: #d4af37;      /* Elegant Gold Accent */
+            --color-light-gray: #f8fafc; /* Light Gray for Content/7% Proportion */
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(15, 23, 42, 0.08);
+        }
+        
+        .premium-gold-gradient-text {
+            background: linear-gradient(135deg, #f3e5ab 0%, #d4af37 50%, #aa7c11 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .premium-navy-gradient {
+            background: linear-gradient(185deg, #0f172a 0%, #1e293b 70%, #0f172a 100%);
+        }
+
+        .carousel-track {
+            display: flex;
+            width: max-content;
+            animation: scroll 30s linear infinite;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        /* Accordion transition safety */
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .faq-item.active .faq-content {
+            max-height: 300px;
+        }
+
+        .faq-item.active .faq-icon{
+            transform: rotate(45deg);
+        }
+
+        /* Gold visual indicators */
+        .nav-link-hover {
+            position: relative;
+        }
+        .nav-link-hover::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-gold);
+            transition: width 0.3s ease;
+        }
+        .nav-link-hover:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-white text-slate-800 font-sans antialiased overflow-x-hidden">
+
+    <!-- DOCUMENT CONTROL & HIERARCHY HEADER (Internal Architecture Specs) -->
+    <div class="bg-slate-950 text-slate-400 text-xs py-2 px-4 border-b border-slate-800">
+        <div class="max-w-[1440px] mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div><span class="text-white font-bold">PROJECT:</span> PT. Kenran Logistic Solution Website Master v1.0 (Final Draft)</div>
+            <div><span class="text-white font-bold">HIERARCHY:</span> Overview &rarr; Identity &rarr; Architecture &rarr; Sections &rarr; Implementation</div>
+        </div>
+    </div>
+
+    <!-- MAIN INTERACTIVE NAVIGATION HEADER (Deep Navy Base) -->
+    <header class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-800/80 transition-all duration-300">
+        <div class="max-w-[1440px] mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="#" class="flex items-center shrink-0">
+                <img
+                    src="assets/logo-kag-logistic.png"
+                    alt="KAG Logistic"
+                    class="w-[220px] h-auto">
+            </a>
+            <nav class="hidden md:flex space-x-8 text-sm font-medium">
+                <a href="#home" class="text-[#d4af37] nav-link-hover transition-colors">Home</a>
+                <a href="#about" class="text-slate-300 hover:text-white nav-link-hover transition-colors">About</a>
+                <a href="#services" class="text-slate-300 hover:text-white nav-link-hover transition-colors">Services</a>
+                <a href="#coverage" class="text-slate-300 hover:text-white nav-link-hover transition-colors">Coverage</a>
+                <a href="#why-us" class="text-slate-300 hover:text-white nav-link-hover transition-colors">Why Us</a>
+                <a href="#contact" class="text-slate-300 hover:text-white nav-link-hover transition-colors">Contact</a>
+            </nav>
+            <div class="hidden md:flex">
+                <a href="#contact" class="bg-slate-950 border border-[#d4af37]/40 hover:border-[#d4af37] text-white hover:text-[#d4af37] text-xs font-semibold uppercase tracking-wider px-5 py-3 rounded-lg shadow-lg transition-all duration-300 hover:-translate-y-0.5">Request Quote</a>
+            </div>
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-white hover:text-[#d4af37] focus:outline-none" aria-label="Toggle Navigation Menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+        </div>
+        <!-- Mobile Dropdown Dynamic Container -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-b border-slate-800 px-6 py-4 space-y-3 text-sm transition-all duration-300">
+            <a href="#home" class="block text-[#d4af37] py-2">Home</a>
+            <a href="#about" class="block text-slate-300 py-2 hover:text-[#d4af37]">About</a>
+            <a href="#services" class="block text-slate-300 py-2 hover:text-[#d4af37]">Services</a>
+            <a href="#coverage" class="block text-slate-300 py-2 hover:text-[#d4af37]">Coverage</a>
+            <a href="#why-us" class="block text-slate-300 py-2 hover:text-[#d4af37]">Why Us</a>
+            <a href="#contact" class="block text-slate-300 py-2 hover:text-[#d4af37]">Contact</a>
+            <a href="#contact" class="block w-full text-center bg-slate-950 text-white border border-[#d4af37]/30 py-3 rounded-lg font-semibold text-xs uppercase tracking-wider">Request Quote</a>
+        </div>
+    </header>
+
+    <main id="home">
+        <!-- 3. HERO SECTION (Deep Navy Base) -->
+        <section class="relative premium-navy-gradient text-white min-h-[calc(100vh-5rem)] flex items-center py-20 px-6 overflow-hidden">
+            <!-- Background Soft Gold Glow Reflection (3.6 Gradient Direction Blueprint) -->
+            <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#d4af37]/5 rounded-full blur-[120px] pointer-events-none select-none"></div>
+            
+            <!-- Hero Background Image -->
+            <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+
+                <img
+                    src="assets/banner-kag-logistic.png"
+                    alt="KAG Logistic Banner"
+                    class="absolute inset-0 w-full h-full object-cover object-center">
+
+                <!-- Dark Overlay -->
+                <div class="absolute inset-0 bg-[#162238]/75"></div>
+
+                <!-- Gold Reflection -->
+                <div class="absolute bottom-0 right-0 w-[700px] h-[700px] bg-[#d4af37]/10 blur-[150px] rounded-full"></div>
+
+            </div>
+            
+            <div class="max-w-[1440px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+                <div class="lg:col-span-7 space-y-8 reveal-fade-up">
+                    <div class="inline-flex items-center space-x-2 bg-slate-950 border border-[#d4af37]/30 px-3 py-1.5 rounded-full text-[#d4af37] text-xs font-semibold tracking-wider uppercase">
+                        <span>PT. KENRAN LOGISTIC SOLUTION</span>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] text-white">
+                        Moving Your Business <br><span class="premium-gold-gradient-text">Without Limits.</span>
+                    </h1>
+                    <p class="text-slate-300 text-lg font-medium max-w-xl border-l-2 border-[#d4af37] pl-4">
+                        Integrated Logistics Solutions Across Indonesia.
+                    </p>
+                    <p class="text-slate-400 text-base max-w-2xl leading-relaxed">
+                        PT. Kenran Logistic Solution menghadirkan layanan logistik yang cepat, aman, dan terpercaya untuk mendukung kebutuhan distribusi bisnis di seluruh Indonesia. Dengan dukungan tim profesional, jaringan distribusi yang terus berkembang, serta solusi logistik yang terintegrasi, kami siap menjadi mitra strategis bagi pertumbuhan bisnis Anda.
+                    </p>
+                    <p class="text-slate-400 text-base max-w-2xl leading-relaxed font-bold italic">
+                        Your Business Needs, 
+                        <br>
+                        <span class="premium-gold-gradient-text">Our Priority.</span>
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <a href="#contact" class="bg-slate-950 border border-[#d4af37]/60 hover:border-[#d4af37] text-white font-bold text-sm px-8 py-4 rounded-xl shadow-xl transform hover:-translate-y-0.5 transition-all">Request Quote</a>
+                        <a href="#services" class="bg-slate-800/40 hover:bg-slate-800/80 border border-slate-700/60 hover:border-slate-600 text-slate-300 font-bold text-sm px-8 py-4 rounded-xl transition-all">Explore Services</a>
+                    </div>
+                    <!-- Hero Statistics Grid Implementation (Gold Numbers Accent) -->
+                    <div class="grid grid-cols-2 gap-4 pt-8 border-t border-slate-800/80 max-w-md">
+                        <div class="p-4 bg-slate-950/80 rounded-xl border border-slate-800">
+                            <div class="text-2xl font-black text-[#d4af37]">24/7</div>
+                            <div class="text-slate-400 text-xs font-medium mt-1">Operational Support</div>
+                         </div>
+                        <div class="p-4 bg-slate-950/80 rounded-xl border border-slate-800">
+                            <div class="text-2xl font-black text-[#d4af37]">100%</div>
+                            <div class="text-slate-400 text-xs font-medium mt-1">Customer Commitment</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Floating Hero Info -->
+            <div class="hidden xl:block absolute right-16 top-1/2 -translate-y-1/2 z-20">
+
+                <div class="
+                    w-[340px]
+                    backdrop-blur-xl
+                    bg-slate-900/40
+                    border border-white/10
+                    rounded-3xl
+                    p-8
+                    shadow-2xl
+                ">
+
+                    <div class="grid grid-cols-2 gap-6">
+
+                        <div>
+                            <h3 class="text-4xl font-black text-[#d4af37]">500+</h3>
+                            <p class="text-sm text-slate-300 mt-1">
+                                Business Clients
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-4xl font-black text-[#d4af37]">120+</h3>
+                            <p class="text-sm text-slate-300 mt-1">
+                                Cities Covered
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="my-7 border-t border-white/10"></div>
+
+                    <div class="space-y-4">
+
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 rounded-full bg-[#d4af37]"></div>
+                            <span class="text-slate-200">Door to Door</span>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 rounded-full bg-[#d4af37]"></div>
+                            <span class="text-slate-200">Port to Door</span>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 rounded-full bg-[#d4af37]"></div>
+                            <span class="text-slate-200">Port to Port</span>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 rounded-full bg-[#d4af37]"></div>
+                            <span class="text-slate-200">Nationwide Distribution</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 4. ABOUT SECTION (Clean White Base) -->
+        <section id="about" class="py-24 px-6 bg-white overflow-hidden">
+            <div class="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                <!-- About Side Media Layout Column -->
+                <div class="lg:col-span-5 reveal-fade-up">
+                    <div class="w-full aspect-[5/6] rounded-3xl border border-slate-200 shadow-inner overflow-hidden relative group bg-slate-50">
+
+                        <img
+                            src="assets/about.png"
+                            alt="About Us"
+                            class="w-full h-full object-cover rounded-3xl">
+
+                    </div>
+                </div>
+
+                <!-- Text Presentation Content Column -->
+                <div class="lg:col-span-7 space-y-8 reveal-fade-up">
+                    <div class="space-y-3 relative">
+                        <span class="text-slate-500 font-bold uppercase tracking-widest text-xs flex items-center gap-2">
+                            <span class="w-6 h-[1px] bg-[#d4af37]"></span> Who We Are
+                        </span>
+                        <h2 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+                            Your Reliable Logistics Partner for Smarter Distribution.
+                        </h2>
+                    </div>
+                    <p class="text-slate-600 leading-relaxed text-base">
+                        PT. Kenran Logistic Solution adalah perusahaan jasa logistik yang didirikan pada tanggal 25 Februari 2025 dengan fokus pada layanan pengiriman, distribusi, dan solusi rantai pasok di Indonesia. Perusahaan hadir untuk memenuhi kebutuhan individu, UMKM, perusahaan, hingga instansi yang membutuhkan layanan logistik yang cepat, aman, dan terpercaya.
+                    </p>
+                    <p class="text-slate-600 leading-relaxed text-base">
+                        Meskipun merupakan perusahaan yang masih berkembang, PT. Kenran Logistic Solution didukung oleh tim dan mitra yang memiliki pengalaman di bidang logistik dan distribusi. Dengan mengedepankan profesionalisme, ketepatan waktu, keamanan barang, serta pelayanan yang responsif, perusahaan berkomitmen menjadi mitra logistik yang mampu memberikan solusi yang efektif, efisien, dan bernilai tambah bagi setiap pelanggan. Materi ini merupakan pengembangan dari profil perusahaan pada company profile agar lebih sesuai dengan format website.
+                    </p>
+                    
+                    <!-- Highlight Corporate Cards Row (7% Light Gray / Base Elements) -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
+                        <div class="p-5 bg-slate-50 border border-slate-200/80 rounded-2xl border-t-2 border-t-[#d4af37]/40">
+                            <div class="w-8 h-8 bg-slate-900 text-[#d4af37] rounded-lg flex items-center justify-center mb-4 font-bold text-xs font-mono">01</div>
+                            <h4 class="font-bold text-slate-900 text-base mb-1">Professional Team</h4>
+                            <p class="text-slate-500 text-xs leading-relaxed">Didukung oleh tim dan mitra yang berpengalaman dalam menangani berbagai kebutuhan logistik.</p>
+                        </div>
+                        <div class="p-5 bg-slate-50 border border-slate-200/80 rounded-2xl border-t-2 border-t-[#d4af37]/40">
+                            <div class="w-8 h-8 bg-slate-900 text-[#d4af37] rounded-lg flex items-center justify-center mb-4 font-bold text-xs font-mono">02</div>
+                            <h4 class="font-bold text-slate-900 text-base mb-1">Reliable Services</h4>
+                            <p class="text-slate-500 text-xs leading-relaxed">Mengutamakan ketepatan waktu, keamanan barang, serta pelayanan yang responsif.</p>
+                        </div>
+                        <div class="p-5 bg-slate-50 border border-slate-200/80 rounded-2xl border-t-2 border-t-[#d4af37]/40">
+                            <div class="w-8 h-8 bg-slate-900 text-[#d4af37] rounded-lg flex items-center justify-center mb-4 font-bold text-xs font-mono">03</div>
+                            <h4 class="font-bold text-slate-900 text-base mb-1">Integrated Solutions</h4>
+                            <p class="text-slate-500 text-xs leading-relaxed">Menyediakan solusi logistik terintegrasi dari trucking, cargo, hingga layanan pendukung.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. CORE VALUES SECTION (7% Light Gray Background) -->
+        <section class="py-24 px-6 bg-slate-50 border-y border-slate-200/60 overflow-hidden">
+            <div class="max-w-[1440px] mx-auto space-y-16">
+                <div class="max-w-3xl space-y-4">
+                    <span class="text-slate-500 font-bold uppercase tracking-widest text-xs flex items-center gap-2">
+                        <span class="w-6 h-[1px] bg-[#d4af37]"></span> Our Core Values
+                    </span>
+                    <h2 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">The Principles Behind Every Delivery</h2>
+                    <p class="text-slate-600 text-base leading-relaxed">
+                        Di balik setiap proses distribusi, terdapat komitmen untuk memberikan pelayanan terbaik kepada setiap pelanggan. Nilai-nilai perusahaan menjadi landasan dalam menjalankan setiap aktivitas operasional, membangun kepercayaan, serta menciptakan hubungan bisnis yang berkelanjutan.
+                    </p>
+                </div>
+
+                <!-- Core Values Cards Grid Configuration (Hover Gold Border / Accent Icon) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Value Card 1 -->
+                    <div class="p-8 bg-white border border-slate-200 hover:border-[#d4af37] rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="w-12 h-12 bg-slate-900 text-[#d4af37] rounded-xl flex items-center justify-center mb-6 transition-all duration-300 group-hover:bg-[#d4af37] group-hover:text-slate-900">
+                                <i class="fa-solid fa-bullseye text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-3">Commitment</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">Kami berkomitmen memberikan pelayanan terbaik melalui ketepatan waktu, tanggung jawab, dan konsistensi dalam memenuhi kebutuhan logistik pelanggan. Setiap pengiriman diperlakukan sebagai bagian penting dari keberhasilan bisnis pelanggan.</p>
+                        </div>
+                    </div>
+                    <!-- Value Card 2 -->
+                    <div class="p-8 bg-white border border-slate-200 hover:border-[#d4af37] rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="w-12 h-12 bg-slate-900 text-[#d4af37] rounded-xl flex items-center justify-center mb-6 transition-all duration-300 group-hover:bg-[#d4af37] group-hover:text-slate-900">
+                                <i class="fa-solid fa-gauge-high text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-3">Efficiency</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">Efisiensi menjadi bagian dari setiap proses operasional. Kami mengoptimalkan waktu, sumber daya, serta perencanaan distribusi agar pengiriman berlangsung cepat, tepat, dan hemat biaya.</p>
+                        </div>
+                    </div>
+                    <!-- Value Card 3 -->
+                    <div class="p-8 bg-white border border-slate-200 hover:border-[#d4af37] rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="w-12 h-12 bg-slate-900 text-[#d4af37] rounded-xl flex items-center justify-center mb-6 transition-all duration-300 group-hover:bg-[#d4af37] group-hover:text-slate-900">
+                                <i class="fa-solid fa-gem text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-3">Added Value</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">Kami percaya bahwa layanan logistik bukan hanya tentang mengirim barang, tetapi juga memberikan solusi yang mampu meningkatkan efisiensi bisnis pelanggan dan menciptakan nilai tambah dalam setiap proses distribusi.</p>
+                        </div>
+                    </div>
+                    <!-- Value Card 4 -->
+                    <div class="p-8 bg-white border border-slate-200 hover:border-[#d4af37] rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="w-12 h-12 bg-slate-900 text-[#d4af37] rounded-xl flex items-center justify-center mb-6 transition-all duration-300 group-hover:bg-[#d4af37] group-hover:text-slate-900">
+                                <i class="fa-solid fa-shield-halved text-xl"></i>
+                            </div>                            
+                            <h3 class="text-xl font-bold text-slate-900 mb-3">Reliable</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">Kepercayaan pelanggan merupakan prioritas utama. Kami menghadirkan layanan yang dapat diandalkan melalui sistem kerja yang profesional, komunikasi yang jelas, serta pengelolaan pengiriman yang aman.</p>
+                        </div>
+                    </div>
+                    <!-- Value Card 5 -->
+                    <div class="p-8 bg-white border border-slate-200 hover:border-[#d4af37] rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="w-12 h-12 bg-slate-900 text-[#d4af37] rounded-xl flex items-center justify-center mb-6 transition-all duration-300 group-hover:bg-[#d4af37] group-hover:text-slate-900">
+                                <i class="fa-solid fa-clipboard-check text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-3">Accountability</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">Kami bertanggung jawab terhadap setiap proses pekerjaan mulai dari penerimaan barang hingga proses pengiriman selesai. Transparansi serta integritas menjadi bagian dari budaya kerja perusahaan.</p>
+                        </div>
+                    </div>
+                    <!-- Value Card 6 -->
+                    <div class="p-8 bg-white border border-slate-200 hover:border-[#d4af37] rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="w-12 h-12 bg-slate-900 text-[#d4af37] rounded-xl flex items-center justify-center mb-6 transition-all duration-300 group-hover:bg-[#d4af37] group-hover:text-slate-900">
+                                <i class="fa-solid fa-handshake text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-3">Strong Partnership</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">Kami terus membangun jaringan distribusi serta kemitraan strategis untuk menghadirkan layanan logistik yang lebih luas, fleksibel, dan mampu mengikuti perkembangan kebutuhan pelanggan.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. OUR SERVICES SECTION (Pure White Section) -->
+        <section id="services" class="py-24 px-6 bg-white overflow-hidden">
+            <div class="max-w-[1440px] mx-auto space-y-16">
+                <div class="max-w-3xl space-y-4">
+                    <span class="text-slate-500 font-bold uppercase tracking-widest text-xs flex items-center gap-2">
+                        <span class="w-6 h-[1px] bg-[#d4af37]"></span> Our Services
+                    </span>
+                    <h2 class="text-3xl md:text-4xl font-black text-[#0f172a] tracking-tight">Integrated Logistics Solutions for Every Business Need</h2>
+                    <p class="text-[#334155] text-base leading-relaxed">
+                        PT. Kenran Logistic Solution menyediakan berbagai layanan logistik yang dirancang untuk memenuhi kebutuhan distribusi bisnis di berbagai sektor industri. Mulai dari pengiriman domestik, trucking, air cargo, hingga project logistics, seluruh layanan kami dikembangkan untuk memberikan solusi yang cepat, aman, dan terpercaya.
+                    </p>
+                </div>
+
+                <!-- Primary Interactive Services Display Grid Matrix -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Service Card 1 -->
+                    <div class="border border-[#e2e8f0] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:border-[#d4af37] hover:-translate-y-1 transition-all duration-300 bg-white group">
+                        <img
+                            src="assets/services/domestic_freight.png"
+                            alt="Domestic Freight"
+                            class="w-full aspect-[16/10] object-cover rounded-t-2xl border-b border-slate-100"
+                        >
+                        <div class="p-6 space-y-3">
+                            <h3 class="text-xl font-bold text-[#0f172a]">Domestic Freight</h3>
+                            <p class="text-[#334155] text-sm leading-relaxed">Layanan pengiriman barang antarkota, antarprovinsi, hingga antarpulau menggunakan moda transportasi darat, laut, maupun udara dengan pilihan layanan yang disesuaikan dengan kebutuhan pelanggan.</p>
+                        </div>
+                    </div>
+                    <!-- Service Card 2 -->
+                    <div class="border border-[#e2e8f0] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:border-[#d4af37] hover:-translate-y-1 transition-all duration-300 bg-white group">
+                        <img
+                            src="assets/services/trucking_cargo.png"
+                            alt="Trucking & Cargo Services"
+                            class="w-full aspect-[16/10] object-cover rounded-t-2xl border-b border-slate-100"
+                        >                        
+                        <div class="p-6 space-y-3">
+                            <h3 class="text-xl font-bold text-[#0f172a]">Trucking & Cargo Services</h3>
+                            <p class="text-[#334155] text-sm leading-relaxed">Layanan distribusi menggunakan armada darat untuk pengiriman skala kecil hingga besar dengan rute yang terencana, biaya kompetitif, dan pengelolaan operasional yang profesional.</p>
+                        </div>
+                    </div>
+                    <!-- Service Card 3 -->
+                    <div class="border border-[#e2e8f0] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:border-[#d4af37] hover:-translate-y-1 transition-all duration-300 bg-white group">
+                        <img
+                            src="assets/services/business.png"
+                            alt="Business Distribution"
+                            class="w-full aspect-[16/10] object-cover rounded-t-2xl border-b border-slate-100"
+                        >
+                        <div class="p-6 space-y-3">
+                            <h3 class="text-xl font-bold text-[#0f172a]">Business Distribution</h3>
+                            <p class="text-[#334155] text-sm leading-relaxed">Solusi distribusi rutin untuk kebutuhan perusahaan, gudang, distributor, retail, maupun supply chain sehingga proses pengiriman menjadi lebih efisien dan terintegrasi.</p>
+                        </div>
+                    </div>
+                    <!-- Service Card 4 -->
+                    <div class="border border-[#e2e8f0] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:border-[#d4af37] hover:-translate-y-1 transition-all duration-300 bg-white group">
+                        <img
+                            src="assets/services/project.png"
+                            alt="Project Logistics"
+                            class="w-full aspect-[16/10] object-cover rounded-t-2xl border-b border-slate-100"
+                        >                           
+                        <div class="p-6 space-y-3">
+                            <h3 class="text-xl font-bold text-[#0f172a]">Project Logistics</h3>
+                            <p class="text-[#334155] text-sm leading-relaxed">Penanganan kebutuhan logistik proyek dengan perencanaan distribusi, koordinasi operasional, serta pengawasan pengiriman barang berdimensi besar maupun kebutuhan khusus.</p>
+                        </div>
+                    </div>
+                    <!-- Service Card 5 -->                  
+                    <div class="border border-[#e2e8f0] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:border-[#d4af37] hover:-translate-y-1 transition-all duration-300 bg-white group">
+                        <img
+                            src="assets/services/doortodoor.png"
+                            alt="Door to Door Service"
+                            class="w-full aspect-[16/10] object-cover rounded-t-2xl border-b border-slate-100"
+                        >
+                        <div class="p-6 space-y-3">
+                            <h3 class="text-xl font-bold text-[#0f172a]">Door to Door Service</h3>
+                            <p class="text-[#334155] text-sm leading-relaxed">Layanan pengambilan dan pengantaran barang langsung dari lokasi pengirim menuju alamat tujuan dengan proses yang praktis, aman, dan efisien.</p>
+                        </div>
+                    </div>
+                    <!-- Service Card 6 -->
+                    <div class="border border-[#e2e8f0] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:border-[#d4af37] hover:-translate-y-1 transition-all duration-300 bg-white group">
+                        <img
+                            src="assets/services/additional.png"
+                            alt="Additional Services"
+                            class="w-full aspect-[16/10] object-cover rounded-t-2xl border-b border-slate-100"
+                        >
+                        <div class="p-6 space-y-3">
+                            <h3 class="text-xl font-bold text-[#0f172a]">Additional Services</h3>
+                            <p class="text-[#334155] text-sm leading-relaxed">Menyediakan berbagai layanan pendukung seperti packing, packing kayu, handling barang, labeling, serta solusi distribusi lainnya untuk memastikan barang sampai dalam kondisi terbaik.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. TRUCKING SERVICE DEEP DIVE SECTION (7% Light Gray Background) -->
+        <section class="py-24 px-6 bg-slate-50 border-t border-slate-200/80 overflow-hidden">
+            <div class="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                <div class="lg:col-span-5 relative order-last lg:order-first">
+                    <div class="lg:col-span-5 reveal-fade-up">
+                        <div class="w-full aspect-[5/6] rounded-3xl border border-slate-200 shadow-inner overflow-hidden relative group bg-slate-50 hover:border-[#d4af37]/30 transition-all duration-500">
+
+                            <img
+                                src="assets/service/trucking-v2.png"
+                                alt="Trucking Service"
+                                class="w-full h-full object-cover rounded-3xl">
+                            <!-- Optional Overlay -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#162238]/15 via-transparent to-transparent"></div>
+
+                            <div class="absolute bottom-0 right-0 w-56 h-56 bg-[#d4af37]/10 blur-3xl rounded-full pointer-events-none"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 space-y-8">
+                    <div class="space-y-3">
+                        <span class="text-slate-500 font-bold uppercase tracking-widest text-xs flex items-center gap-2">
+                            <span class="w-6 h-[1px] bg-[#d4af37]"></span> Trucking Services
+                        </span>
+                        <h2 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">Reliable Land Transportation for Efficient Distribution</h2>
+                        <p class="text-slate-600 text-base leading-relaxed">
+                            Layanan trucking PT. Kenran Logistic Solution dirancang untuk memenuhi kebutuhan distribusi barang dalam jumlah kecil maupun besar melalui jalur darat. Dengan perencanaan rute yang efisien, pengelolaan operasional yang profesional, serta dukungan armada yang beragam, kami membantu memastikan setiap pengiriman tiba tepat waktu dan dalam kondisi aman.
+                        </p>
+                    </div>
+
+                    <!-- Trucking Types Deep Breakdown -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
+                        <div class="space-y-2 bg-white border border-slate-200 p-6 rounded-2xl border-l-4 border-l-[#d4af37]">
+                            <h4 class="font-bold text-slate-900 text-lg flex items-center space-x-2">
+                                <span>Full Truck Load (FTL)</span>
+                            </h4>
+                            <p class="text-slate-500 text-sm leading-relaxed">Layanan pengiriman menggunakan satu kendaraan penuh yang dikhususkan untuk satu pelanggan. Cocok untuk pengiriman dalam jumlah besar dengan prioritas waktu serta keamanan barang.</p>
+                        </div>
+                        <div class="space-y-2 bg-white border border-slate-200 p-6 rounded-2xl border-l-4 border-l-[#d4af37]">
+                            <h4 class="font-bold text-slate-900 text-lg flex items-center space-x-2">
+                                <span>Less Than Truck Load (LTL)</span>
+                            </h4>
+                            <p class="text-slate-500 text-sm leading-relaxed">Layanan pengiriman dengan sistem konsolidasi di mana beberapa pengiriman dari pelanggan berbeda digabung dalam satu kendaraan untuk memberikan solusi yang lebih ekonomis tanpa mengurangi kualitas layanan.</p>
+                        </div>
+                    </div>
+
+                    <!-- Micro Feature Badges Checklist -->
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="bg-[#e2e8f0] text-[#334155] text-xs px-3 py-1.5 rounded-lg font-medium">Regular Delivery</span>
+                        <span class="bg-[#e2e8f0] text-[#334155] text-xs px-3 py-1.5 rounded-lg font-medium">Express Delivery</span>
+                        <span class="bg-[#e2e8f0] text-[#334155] text-xs px-3 py-1.5 rounded-lg font-medium">Door to Door Delivery</span>
+                        <span class="bg-[#e2e8f0] text-[#334155] text-xs px-3 py-1.5 rounded-lg font-medium">Scheduled Distribution</span>
+                        <span class="bg-[#e2e8f0] text-[#334155] text-xs px-3 py-1.5 rounded-lg font-medium">Business Logistics</span>
+                        <span class="bg-[#e2e8f0] text-[#334155] text-xs px-3 py-1.5 rounded-lg font-medium">Industrial Transportation</span>
+                    </div>
+
+                    <!-- Corporate Advantage Matrix Checkbox Rows -->
+                    <div class="border-t border-[#e2e8f0] pt-6 space-y-3">
+                        <h4 class="text-xs uppercase tracking-widest font-bold text-[#64748b]">Operational Value-Add</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-[#334155] font-medium">
+                            <div class="flex items-center space-x-2"><span class="text-[#d4af37] font-bold">&check;</span> <span>Pengiriman tepat waktu.</span></div>
+                            <div class="flex items-center space-x-2"><span class="text-[#d4af37] font-bold">&check;</span> <span>Penanganan barang yang aman.</span></div>
+                            <div class="flex items-center space-x-2"><span class="text-[#d4af37] font-bold">&check;</span> <span>Tarif kompetitif.</span></div>
+                            <div class="flex items-center space-x-2"><span class="text-[#d4af37] font-bold">&check;</span> <span>Rute distribusi yang efisien.</span></div>
+                            <div class="flex items-center space-x-2"><span class="text-[#d4af37] font-bold">&check;</span> <span>Jangkauan layanan yang terus berkembang.</span></div>
+                            <div class="flex items-center space-x-2"><span class="text-[#d4af37] font-bold">&check;</span> <span>Dukungan tim operasional profesional.</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Advantages Rows & Corporate Quote Link Info -->
+                    <div class="pt-4 flex flex-col sm:flex-row sm:items-center justify-between p-6 bg-white border border-slate-200 rounded-2xl gap-4">
+                        <div class="text-slate-800 font-bold text-base">Need Reliable Trucking Services?</div>
+                        <a href="#contact" class="bg-slate-900 border border-[#d4af37]/40 text-white text-xs font-bold uppercase tracking-wider px-6 py-3.5 rounded-xl hover:border-[#d4af37] transition-all text-center">Request Trucking Quote</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. AIR CARGO SERVICE DEEP DIVE SECTION (Clean White Base) -->
+        <section class="py-24 px-6 bg-white overflow-hidden">
+            <div class="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                <div class="lg:col-span-7 space-y-8">
+                    <div class="space-y-3">
+                        <span class="text-slate-500 font-bold uppercase tracking-widest text-xs flex items-center gap-2">
+                            <span class="w-6 h-[1px] bg-[#d4af37]"></span> Air Cargo Services
+                        </span>
+                        <h2 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">Fast, Secure, and Time-Critical Air Freight Solutions</h2>
+                        <p class="text-slate-600 text-base leading-relaxed">
+                            PT. Kenran Logistic Solution menyediakan layanan pengiriman kargo udara untuk kebutuhan distribusi barang dengan prioritas kecepatan dan keamanan. Melalui jaringan transportasi udara yang luas, kami menghadirkan solusi pengiriman domestik maupun internasional yang fleksibel sesuai kebutuhan pelanggan.
+                        </p>
+                    </div>
+
+                    <!-- Logistics Infrastructure Target Badges -->
+                    <div class="grid grid-cols-3 gap-4 text-center">
+                        <div class="bg-[#f8fafc] border border-[#e2e8f0] p-4 rounded-xl font-bold text-[#0f172a] text-sm hover:border-[#d4af37]/40 transition-colors group">Door to Door</div>
+                        <div class="bg-[#f8fafc] border border-[#e2e8f0] p-4 rounded-xl font-bold text-[#0f172a] text-sm hover:border-[#d4af37]/40 transition-colors group">Door to Port</div>
+                        <div class="bg-[#f8fafc] border border-[#e2e8f0] p-4 rounded-xl font-bold text-[#0f172a] text-sm hover:border-[#d4af37]/40 transition-colors group">Port to Port</div>
+                    </div>
+
+                    <!-- Vertical Sector Allocation Matrix Split Row -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
+                        <div class="space-y-3">
+                            <h4 class="text-xs font-bold uppercase tracking-widest text-[#64748b]">Suitable For High Importance Industry:</h4>
+                            <ul class="text-sm text-[#334155] space-y-2 font-medium">
+                                <li class="flex items-center space-x-2"><span class="w-1.5 h-1.5 bg-[#d4af37] rounded-full"></span><span>Barang prioritas tinggi / Urgent</span></li>
+                                <li class="flex items-center space-x-2"><span class="w-1.5 h-1.5 bg-[#d4af37] rounded-full"></span><span>Dokumen penting & Sparepart mesin</span></li>
+                                <li class="flex items-center space-x-2"><span class="w-1.5 h-1.5 bg-[#d4af37] rounded-full"></span><span>Produk bernilai tinggi / Komersial</span></li>
+                                <li class="flex items-center space-x-2"><span class="w-1.5 h-1.5 bg-[#d4af37] rounded-full"></span><span>Proyek konstruksi, Infrastruktur & Mining</span></li>
+                                <li class="flex items-center space-x-2"><span class="w-1.5 h-1.5 bg-[#d4af37] rounded-full"></span><span>E-commerce & Distributor regional</span></li>
+                                <li class="flex items-center space-x-2"><span class="w-1.5 h-1.5 bg-[#d4af37] rounded-full"></span><span>Pengiriman dalam jumlah besar / Forwarder</span></li>
+                            </ul>
+                        </div>
+                        <div class="space-y-3">
+                            <h4 class="text-xs font-bold uppercase tracking-widest text-[#64748b]">Operational Delivery Advantages:</h4>
+                            <ul class="text-sm text-[#334155] space-y-2 font-medium">
+                                <li class="flex items-center space-x-2"><span class="text-[#d4af37] font-bold">&check;</span><span>Transit cepat dan tepat waktu.</span></li>
+                                <li class="flex items-center space-x-2"><span class="text-[#d4af37] font-bold">&check;</span><span>Jaringan pengiriman domestik & internasional.</span></li>
+                                <li class="flex items-center space-x-2"><span class="text-[#d4af37] font-bold">&check;</span><span>Penanganan barang yang profesional.</span></li>
+                                <li class="flex items-center space-x-2"><span class="text-[#d4af37] font-bold">&check;</span><span>Proses tracking yang mudah.</span></li>
+                                <li class="flex items-center space-x-2"><span class="text-[#d4af37] font-bold">&check;</span><span>Layanan fleksibel sesuai kebutuhan.</span></li>
+                                <li class="flex items-center space-x-2"><span class="text-[#d4af37] font-bold">&check;</span><span>Dukungan operasional yang berpengalaman.</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Operational Quote Call to Action Link Row (Deep Navy Theme Layout) -->
+                    <div class="pt-4 flex flex-col sm:flex-row sm:items-center justify-between p-6 bg-slate-900 text-white rounded-2xl border border-slate-800 gap-4">
+                        <div class="font-bold text-base">Need Faster Delivery Logistics?</div>
+                        <a href="#contact" class="bg-slate-950 border border-[#d4af37]/40 hover:border-[#d4af37] text-white text-xs font-bold uppercase tracking-wider px-6 py-3.5 rounded-xl transition-all text-center">Request Air Cargo Quote</a>
+                    </div>
+                </div>
+
+                
+                <div class="lg:col-span-5 relative">
+                    <div class="w-full aspect-[14/9] rounded-3xl border border-slate-300 shadow-md overflow-hidden relative group hover:border-[#d4af37]/30 transition-all duration-500">
+
+                        <img
+                            src="assets/service/air-cargo.png"
+                            alt="Air Cargo Service"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+
+                        <!-- Overlay -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#162238]/15 via-transparent to-transparent"></div>
+
+                        <!-- Gold Glow -->
+                        <div class="absolute bottom-0 right-0 w-56 h-56 bg-[#d4af37]/10 blur-3xl rounded-full pointer-events-none"></div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. COVERAGE NETWORK SECTION (7% Light Gray Background) -->
+        <section id="coverage" class="py-24 px-6 bg-slate-50 border-y border-slate-200/80 overflow-hidden">
+            <div class="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                <div class="lg:col-span-6 space-y-8">
+                    <div class="space-y-3">
+                        <span class="text-slate-500 font-bold uppercase tracking-widest text-xs flex items-center gap-2">
+                            <span class="w-6 h-[1px] bg-[#d4af37]"></span> Coverage Network
+                        </span>
+                        <h2 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">Connecting Businesses Across Indonesia</h2>
+                        <p class="text-slate-600 text-base leading-relaxed">
+                            PT. Kenran Logistic Solution terus mengembangkan jaringan distribusi untuk mendukung kebutuhan logistik pelanggan di berbagai wilayah Indonesia. Melalui kolaborasi dengan mitra strategis serta pemanfaatan berbagai moda transportasi, kami menghadirkan solusi distribusi yang fleksibel, aman, dan tepat waktu.
+                        </p>
+                        <p class="text-slate-600 text-base leading-relaxed">
+                            Area layanan utama saat ini mencakup Pulau Jawa dan Sumatera Selatan, dengan jaringan pengiriman yang terus berkembang ke berbagai wilayah lainnya sesuai kebutuhan pelanggan dan proyek distribusi.
+                        </p>
+                    </div>
+                    <!-- Highlight Metrics Row Grid -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="p-4 bg-white border border-[#e2e8f0] rounded-xl shadow-sm hover:border-[#d4af37]/40 transition-colors group">
+                            <div class="font-bold text-[#0f172a] text-base">Domestic Distribution</div>
+                        </div>
+                        <div class="p-4 bg-white border border-[#e2e8f0] rounded-xl shadow-sm hover:border-[#d4af37]/40 transition-colors group">
+                            <div class="font-bold text-[#0f172a] text-base">Multi Transportation</div>
+                        </div>
+                        <div class="p-4 bg-white border border-[#e2e8f0] rounded-xl shadow-sm hover:border-[#d4af37]/40 transition-colors group">
+                            <div class="font-bold text-[#0f172a] text-base">Growing Network</div>
+                        </div>
+                        <div class="p-4 bg-white border border-[#e2e8f0] rounded-xl shadow-sm hover:border-[#d4af37]/40 transition-colors group">
+                            <div class="font-bold text-[#0f172a] text-base">Flexible Delivery</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Map Presentation Placeholder Box Display (Deep Navy Framework Base) -->
+                <div class="lg:col-span-6">
+                    <div class="w-full aspect-[4/3] rounded-3xl border border-slate-800 shadow-2xl overflow-hidden relative group hover:border-[#d4af37]/30 transition-all duration-500">
+
+                        <img
+                            src="assets/service/coverage-map.png"
+                            alt="Indonesia Coverage Map"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]">
+
+                        <!-- Dark Overlay -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#162238]/20 via-transparent to-transparent"></div>
+
+                        <!-- Gold Glow -->
+                        <div class="absolute bottom-0 right-0 w-56 h-56 bg-[#d4af37]/10 blur-3xl rounded-full pointer-events-none"></div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 11. WHY CHOOSE US SECTION (Clean White Base Layout) -->
+        <section id="why-us" class="py-24 px-6 bg-white overflow-hidden">
+            <div class="max-w-[1440px] mx-auto space-y-16">
+                <div class="max-w-3xl space-y-4">
+                    <span class="text-slate-500 font-bold uppercase tracking-widest text-xs flex items-center gap-2">
+                        <span class="w-6 h-[1px] bg-[#d4af37]"></span> Why Choose Us
+                    </span>
+                    <h2 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">More Than Logistics, We Deliver Confidence</h2>
+                </div>
+
+                <!-- Comprehensive Value Card System Rows Structure (Highlight Numbers/Icons Accent Gold) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Why Card 1 -->
+                    <div class="p-6 bg-slate-50 border border-slate-200 rounded-2xl shadow-sm flex space-x-4 hover:border-[#d4af37]/40 transition-colors group">
+                        <div class="w-12 h-12 bg-slate-900 text-[#d4af37] rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 group-hover:bg-[#d4af37] group-hover:text-slate-900">
+                            <i class="fa-solid fa-users text-xl"></i>
+                        </div>
+                        <div class="space-y-1">
+                            <h4 class="font-bold text-slate-900 text-base">Professional Team</h4>
+                            <p class="text-slate-500 text-xs leading-relaxed">Didukung oleh tenaga operasional dan mitra berpengalaman yang memahami proses logistik secara menyeluruh.</p>
+                         </div>
+                    </div>
+                    <!-- Why Card 2 -->
+                    <div class="p-6 bg-slate-50 border border-slate-200 rounded-2xl shadow-sm flex space-x-4 hover:border-[#d4af37]/40 transition-colors group">
+                        <div class="w-12 h-12 bg-slate-900 text-[#d4af37] rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 group-hover:bg-[#d4af37] group-hover:text-slate-900">
+                            <i class="fa-solid fa-earth-asia text-xl"></i>
+                        </div>
+                        <div class="space-y-1">
+                            <h4 class="font-bold text-slate-900 text-base">Wide Distribution Network</h4>
+                            <p class="text-slate-500 text-xs leading-relaxed">Memiliki jaringan distribusi yang terus berkembang untuk menjangkau berbagai wilayah sesuai kebutuhan pelanggan.</p>
+                        </div>
+                    </div>
+                    <!-- Why Card 3 -->
+                    <div class="p-6 bg-slate-50 border border-slate-200 rounded-2xl shadow-sm flex space-x-4 hover:border-[#d4af37]/40 transition-colors group">
+                        <div class="w-12 h-12 bg-slate-900 text-[#d4af37] rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 group-hover:bg-[#d4af37] group-hover:text-slate-900">
+                            <i class="fa-solid fa-tags text-xl"></i>
+                        </div>
+                        <div class="space-y-1">
+                            <h4 class="font-bold text-slate-900 text-base">Competitive Pricing</h4>
+                            <p class="text-slate-500 text-xs leading-relaxed">Memberikan solusi logistik dengan biaya yang kompetitif tanpa mengurangi kualitas pelayanan.</p>
+                        </div>
+                    </div>
+                    <!-- Why Card 4 -->
+                    <div class="p-6 bg-slate-50 border border-slate-200 rounded-2xl shadow-sm flex space-x-4 hover:border-[#d4af37]/40 transition-colors group">
+                            <div class="w-12 h-12 bg-slate-900 text-[#d4af37] rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 group-hover:bg-[#d4af37] group-hover:text-slate-900">
+                                <i class="fa-solid fa-headset text-xl"></i>
+                            </div>     
+                            <div class="space-y-1">
+                            <h4 class="font-bold text-slate-900 text-base">Fast Response</h4>
+                            <p class="text-slate-500 text-xs leading-relaxed">Tim kami siap memberikan respon cepat terhadap kebutuhan informasi, konsultasi, maupun permintaan pengiriman.</p>
+                        </div>
+                    </div>
+                    <!-- Why Card 5 -->
+                    <div class="p-6 bg-slate-50 border border-slate-200 rounded-2xl shadow-sm flex space-x-4 hover:border-[#d4af37]/40 transition-colors group">
+                        <div class="w-12 h-12 bg-slate-900 text-[#d4af37] rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 group-hover:bg-[#d4af37] group-hover:text-slate-900">
+                            <i class="fa-solid fa-box-open text-xl"></i>
+                        </div>
+                        <div class="space-y-1">
+                            <h4 class="font-bold text-slate-900 text-base">Secure Handling</h4>
+                            <p class="text-slate-500 text-xs leading-relaxed">Setiap barang ditangani dengan prosedur operasional yang mengutamakan keamanan selama proses distribusi.</p>
+                        </div>
+                    </div>
+                    <!-- Why Card 6 -->
+                    <div class="p-6 bg-slate-50 border border-slate-200 rounded-2xl shadow-sm flex space-x-4 hover:border-[#d4af37]/40 transition-colors group">
+                        <div class="w-12 h-12 bg-slate-900 text-[#d4af37] rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 group-hover:bg-[#d4af37] group-hover:text-slate-900">
+                            <i class="fa-solid fa-face-smile text-xl"></i>
+                        </div>
+                        <div class="space-y-1">
+                            <h4 class="font-bold text-slate-900 text-base">Customer Satisfaction</h4>
+                            <p class="text-slate-500 text-xs leading-relaxed">Kepuasan pelanggan menjadi prioritas utama melalui pelayanan yang responsif, profesional, dan berorientasi pada solusi.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 12. STRATEGIC PARTNERS SECTION -->
+        <section class="py-10 px-5 bg-white border-b border-slate-100 overflow-hidden">
+            <div class="max-w-[1440px] mx-auto space-y-12">
+                <div class="max-w-3xl space-y-3">
+                    <span class="text-slate-500 font-bold uppercase tracking-widest text-xs flex items-center gap-2">
+                        <span class="w-6 h-[1px] bg-[#d4af37]"></span>Strategic Partners
+                    </span>
+                    <h2 class="text-2xl md:text-3xl font-black text-[#0f172a] tracking-tight">Growing Together Through Strong Partnerships</h2>
+                    <p class="text-[#64748b] text-sm leading-relaxed">
+                        PT. Kenran Logistic Solution percaya bahwa kolaborasi merupakan bagian penting dalam membangun layanan logistik yang luas, efisien, dan berkelanjutan. Melalui kerja sama dengan berbagai perusahaan logistik, transportasi, serta mitra operasional lainnya, kami terus memperluas kemampuan distribusi untuk memenuhi kebutuhan pelanggan di berbagai wilayah. Pengembangan ini berasal dari bagian Our Best Partners pada company profile.
+                    </p>
+                </div>
+
+                <!-- Infinite Infinite Carousel Implementation Layout (PARTNER_LOGO_SLOT) -->
+                <div class="w-full overflow-hidden relative py-6 bg-[#f8fafc] rounded-2xl border border-slate-200">
+                    <div class="carousel-track flex items-center space-x-12">
+
+                        <img src="assets/partnership/logo/lion-parcel.png"
+                            alt="Lion Parcel"
+                            class="h-20 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 hover:scale-125 transition-all duration-300">
+
+                        <img src="assets/partnership/logo/lionx.png"
+                            alt="Lion Express"
+                            class="h-20 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 hover:scale-125 transition-all duration-300">
+
+                        <img src="assets/partnership/logo/tiki.png"
+                            alt="TIKI"
+                            class="h-20 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 hover:scale-125 transition-all duration-300">
+
+                        <img src="assets/partnership/logo/spx.png"
+                            alt="Shopee Express"
+                            class="h-20 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 hover:scale-125 transition-all duration-300">
+
+                        <img src="assets/partnership/logo/rpx.png"
+                            alt="RPX Logistics"
+                            class="h-20 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 hover:scale-125 transition-all duration-300">
+
+                        <img src="assets/partnership/logo/sng.png"
+                            alt="SNG Logistic"
+                            class="h-20 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 hover:scale-125 transition-all duration-300">
+
+                        <img src="assets/partnership/logo/amm.png"
+                            alt="AMM"
+                            class="h-20 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 hover:scale-125 transition-all duration-300">
+
+                        <img src="assets/partnership/logo/lbn.png"
+                            alt="Lintas Bumi Nusantara"
+                            class="h-20 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 hover:scale-125 transition-all duration-300">
+
+                        <img src="assets/partnership/logo/pm.png"
+                            alt="PT. PARADE TUA MARINA"
+                            class="h-20 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 hover:scale-125 transition-all duration-300">
+
+                        <img src="assets/partnership/logo/lima.png"
+                            alt="LIMA"
+                            class="h-20 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 hover:scale-125 transition-all duration-300">
+
+                        <img src="assets/partnership/logo/dcs.png"
+                            alt="DC SOLUTION"
+                            class="h-20 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 hover:scale-125 transition-all duration-300">
+
+                        <!-- Duplicate biar infinite -->
+
+                        <img src="assets/partnership/logo/lion-parcel.png"
+                            alt="Lion Parcel"
+                            class="h-20 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 hover:scale-125 transition-all duration-300">
+
+                        <img src="assets/partnership/logo/lionx.png"
+                            alt="Lion Express"
+                            class="h-20 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 hover:scale-125 transition-all duration-300">
+
+                        <img src="assets/partnership/logo/tiki.png"
+                            alt="TIKI"
+                            class="h-20 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 hover:scale-125 transition-all duration-300">
+
+                        <img src="assets/partnership/logo/spx.png"
+                            alt="Shopee Express"
+                            class="h-20 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 hover:scale-125 transition-all duration-300">
+
+                        <img src="assets/partnership/logo/rpx.png"
+                            alt="RPX Logistics"
+                            class="h-20 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 hover:scale-125 transition-all duration-300">
+
+                        <img src="assets/partnership/logo/sng.png"
+                            alt="SNG Logistic"
+                            class="h-20 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 hover:scale-125 transition-all duration-300">
+
+                        <img src="assets/partnership/logo/amm.png"
+                            alt="AMM"
+                            class="h-20 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 hover:scale-125 transition-all duration-300">
+
+                        <img src="assets/partnership/logo/lbn.png"
+                            alt="Lintas Bumi Nusantara"
+                            class="h-20 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 hover:scale-125 transition-all duration-300">
+
+                        <img src="assets/partnership/logo/pm.png"
+                            alt="PT. PARADE TUA MARINA"
+                            class="h-20 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 hover:scale-125 transition-all duration-300">
+
+                        <img src="assets/partnership/logo/lima.png"
+                            alt="LIMA"
+                            class="h-20 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 hover:scale-125 transition-all duration-300">
+
+                        <img src="assets/partnership/logo/dcs.png"
+                            alt="DC SOLUTION"
+                            class="h-20 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 hover:scale-125 transition-all duration-300">
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 13. OUR CUSTOMERS SECTION -->
+        <section class="py-10 px-6 bg-white overflow-hidden">
+            <div class="max-w-[1440px] mx-auto space-y-12">
+                <div class="max-w-3xl space-y-3">
+                    <span class="text-slate-500 font-bold uppercase tracking-widest text-xs flex items-center gap-2">
+                        <span class="w-6 h-[1px] bg-[#d4af37]"></span>Trusted by Our Customers
+                    </span>
+                    <p class="text-[#64748b] text-sm leading-relaxed">
+                        Kami bangga dapat menjadi bagian dari perjalanan berbagai perusahaan dan pelaku usaha dalam memenuhi kebutuhan distribusi mereka. Kepercayaan yang diberikan pelanggan menjadi motivasi bagi kami untuk terus meningkatkan kualitas layanan dan menghadirkan solusi logistik yang lebih baik setiap harinya. Bagian ini merupakan pengembangan dari halaman Our Best Customer pada company profile.
+                    </p>
+                </div>
+
+                <!-- Infinite Infinite Carousel Implementation Layout (CUSTOMER_LOGO_SLOT) -->
+                <div class="w-full overflow-hidden relative py-6 bg-[#f8fafc] rounded-2xl border border-slate-200">
+                    <div class="carousel-track flex items-center space-x-12" style="animation-direction: reverse;">
+
+                        <img src="assets/customer/logo/byd.png"
+                            alt="BYD"
+                            class="h-20 w-auto object-contain opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-300">
+
+                        <img src="assets/customer/logo/denza.png"
+                            alt="DENZA"
+                            class="h-20 w-auto object-contain opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-300">
+
+                        <img src="assets/customer/logo/bmw-astra.png"
+                            alt="BMW ASTRA"
+                            class="h-20 w-auto object-contain opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-300">
+
+                        <img src="assets/customer/logo/aion.png"
+                            alt="WIKA Corp"
+                            class="h-20 w-auto object-contain opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-300">
+
+                        <img src="assets/customer/logo/finicare.png"
+                            alt="FINICARE"
+                            class="h-20 w-auto object-contain opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-300">
+
+                        <img src="assets/customer/logo/hvs.png"
+                            alt="HVS"
+                            class="h-20 w-auto object-contain opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-300">
+
+                        <img src="assets/customer/logo/mekari.png"
+                            alt="MEKARI"
+                            class="h-20 w-auto object-contain opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-300">
+
+                         <img src="assets/customer/logo/mg.png"
+                            alt="MG"
+                            class="h-20 w-auto object-contain opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-300">
+
+                        <img src="assets/customer/logo/temu.png"
+                            alt="TEMU"
+                            class="h-20 w-auto object-contain opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-300">
+
+                        <img src="assets/customer/logo/ttm.png"
+                            alt="TTM"
+                            class="h-20 w-auto object-contain opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-300">
+
+                       <!-- Duplicate untuk Infinite Scroll -->
+
+                        <img src="assets/customer/logo/byd.png"
+                            alt="BYD"
+                            class="h-20 w-auto object-contain opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-300">
+
+                        <img src="assets/customer/logo/denza.png"
+                            alt="DENZA"
+                            class="h-20 w-auto object-contain opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-300">
+
+                        <img src="assets/customer/logo/bmw-astra.png"
+                            alt="BMW ASTRA"
+                            class="h-20 w-auto object-contain opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-300">
+
+                        <img src="assets/customer/logo/aion.png"
+                            alt="WIKA Corp"
+                            class="h-20 w-auto object-contain opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-300">
+
+                        <img src="assets/customer/logo/finicare.png"
+                            alt="FINICARE"
+                            class="h-20 w-auto object-contain opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-300">
+
+                        <img src="assets/customer/logo/hvs.png"
+                            alt="HVS"
+                            class="h-20 w-auto object-contain opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-300">
+
+                        <img src="assets/customer/logo/mekari.png"
+                            alt="MEKARI"
+                            class="h-20 w-auto object-contain opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-300">
+
+                         <img src="assets/customer/logo/mg.png"
+                            alt="MG"
+                            class="h-20 w-auto object-contain opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-300">
+
+                        <img src="assets/customer/logo/temu.png"
+                            alt="TEMU"
+                            class="h-20 w-auto object-contain opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-300">
+
+                        <img src="assets/customer/logo/ttm.png"
+                            alt="TTM"
+                            class="h-20 w-auto object-contain opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-300">
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 14. FREQUENTLY ASKED QUESTIONS (FAQ Accordion Component) -->
+        <section class="py-24 px-6 bg-slate-50 border-t border-slate-200/80 overflow-hidden">
+            <div class="max-w-[1000px] mx-auto space-y-16">
+                <div class="text-center space-y-4">
+                    <span class="text-slate-500 font-bold uppercase tracking-widest text-xs flex justify-center items-center gap-2">
+                        <span class="w-6 h-[1px] bg-[#d4af37]"></span> Frequently Asked Questions <span class="w-6 h-[1px] bg-[#d4af37]"></span>
+                    </span>
+                    <h2 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">Everything You Need to Know Before Shipping</h2>
+                </div>
+
+                <!-- Accordion Implementation Grid Container System (Active Gold Indicator Text) -->
+                <div class="space-y-4" id="faq-accordion-group">
+                    <!-- FAQ 1 -->
+                    <div class="faq-item bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:border-[#d4af37]/40 transition-colors group">
+                        <button class="w-full px-6 py-5 text-left font-bold text-slate-900 hover:text-slate-950 text-base flex justify-between items-center focus:outline-none">
+                            <span>Apakah PT. Kenran Logistic Solution melayani pengiriman ke seluruh Indonesia?</span>
+                            <span class="faq-icon text-[#d4af37] text-xl font-bold font-mono transition-transform duration-300">+</span>
+                        </button>
+                        <div class="faq-content bg-slate-50/50">
+                            <p class="px-6 pb-5 pt-1 text-sm text-slate-600 leading-relaxed">Kami melayani berbagai kebutuhan distribusi ke banyak wilayah di Indonesia melalui jaringan operasional serta mitra strategis. Area layanan utama saat ini mencakup Pulau Jawa dan Sumatera Selatan, dengan cakupan yang terus berkembang sesuai kebutuhan pelanggan.</p>
+                        </div>
+                    </div>
+                    <!-- FAQ 2 -->
+                    <div class="faq-item bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:border-[#d4af37]/40 transition-colors group">
+                        <button class="w-full px-6 py-5 text-left font-bold text-slate-900 hover:text-slate-950 text-base flex justify-between items-center focus:outline-none">
+                            <span>Apa saja jenis layanan yang tersedia?</span>
+                            <span class="faq-icon text-[#d4af37] text-xl font-bold font-mono transition-transform duration-300">+</span>
+                        </button>
+                        <div class="faq-content bg-slate-50/50">
+                            <p class="px-6 pb-5 pt-1 text-sm text-slate-600 leading-relaxed">Kami menyediakan layanan Domestic Freight, Trucking & Cargo Services, Business Distribution, Project Logistics, Door to Door Service, Air Cargo, serta berbagai layanan pendukung seperti packing, packing kayu, dan handling barang.</p>
+                        </div>
+                    </div>
+                    <!-- FAQ 3 -->
+                    <div class="faq-item bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:border-[#d4af37]/40 transition-colors group">
+                        <button class="w-full px-6 py-5 text-left font-bold text-slate-900 hover:text-slate-950 text-base flex justify-between items-center focus:outline-none">
+                            <span>Apakah tersedia layanan Door to Door?</span>
+                            <span class="faq-icon text-[#d4af37] text-xl font-bold font-mono transition-transform duration-300">+</span>
+                        </button>
+                        <div class="faq-content bg-slate-50/50">
+                            <p class="px-6 pb-5 pt-1 text-sm text-slate-600 leading-relaxed">Ya. Kami menyediakan layanan Door to Door untuk memudahkan proses pengiriman mulai dari lokasi pengirim hingga alamat tujuan secara praktis dan aman.</p>
+                        </div>
+                    </div>
+                    <!-- FAQ 4 -->
+                    <div class="faq-item bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:border-[#d4af37]/40 transition-colors group">
+                        <button class="w-full px-6 py-5 text-left font-bold text-slate-900 hover:text-slate-950 text-base flex justify-between items-center focus:outline-none">
+                            <span>Bagaimana cara meminta penawaran harga?</span>
+                            <span class="faq-icon text-[#d4af37] text-xl font-bold font-mono transition-transform duration-300">+</span>
+                        </button>
+                        <div class="faq-content bg-slate-50/50">
+                            <p class="px-6 pb-5 pt-1 text-sm text-slate-600 leading-relaxed">Pelanggan dapat menghubungi tim kami melalui formulir Request Quote, WhatsApp, email, atau nomor telepon yang tersedia pada halaman Contact.</p>
+                        </div>
+                    </div>
+                    <!-- FAQ 5 -->
+                    <div class="faq-item bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:border-[#d4af37]/40 transition-colors group">
+                        <button class="w-full px-6 py-5 text-left font-bold text-slate-900 hover:text-slate-950 text-base flex justify-between items-center focus:outline-none">
+                            <span>Apakah perusahaan melayani kebutuhan logistik proyek?</span>
+                            <span class="faq-icon text-[#d4af37] text-xl font-bold font-mono transition-transform duration-300">+</span>
+                        </button>
+                        <div class="faq-content bg-slate-50/50">
+                            <p class="px-6 pb-5 pt-1 text-sm text-slate-600 leading-relaxed">Ya. Kami menyediakan layanan Project Logistics untuk mendukung kebutuhan distribusi proyek dengan perencanaan, koordinasi, serta pengawasan yang profesional.</p>
+                        </div>
+                    </div>
+                    <!-- FAQ 6 -->
+                    <div class="faq-item bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:border-[#d4af37]/40 transition-colors group">
+                        <button class="w-full px-6 py-5 text-left font-bold text-slate-900 hover:text-slate-950 text-base flex justify-between items-center focus:outline-none">
+                            <span>Bagaimana keamanan barang selama pengiriman?</span>
+                            <span class="faq-icon text-[#d4af37] text-xl font-bold font-mono transition-transform duration-300">+</span>
+                        </button>
+                        <div class="faq-content bg-slate-50/50">
+                            <p class="px-6 pb-5 pt-1 text-sm text-slate-600 leading-relaxed">Kami menerapkan prosedur penanganan yang mengutamakan keamanan barang pada setiap proses distribusi serta didukung oleh tim operasional yang berpengalaman.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 15. CALL TO ACTION (CTA Deep Navy Closing Lead Generation Banner with Soft Gold Glow) -->
+        <section class="relative premium-navy-gradient text-white py-24 px-6 text-center overflow-hidden border-t border-slate-800">
+            <!-- Background Soft Gold Glow Reflection (3.6) -->
+            <div class="absolute inset-0 bg-[#d4af37]/3 opacity-40 pointer-events-none z-0"></div>
+            
+            <div class="max-w-4xl mx-auto space-y-8 relative z-10">
+                <span class="text-[#d4af37] font-bold uppercase tracking-widest text-xs flex justify-center items-center gap-2">
+                    <span class="w-4 h-[1px] bg-[#d4af37]"></span> Ready To Grow With Us? <span class="w-4 h-[1px] bg-[#d4af37]"></span>
+                </span>
+                <h2 class="text-4xl md:text-5xl font-black tracking-tight text-white">Let's Move Your Business Forward.</h2>
+                <p class="text-slate-400 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+                    PT. Kenran Logistic Solution siap membantu kebutuhan logistik bisnis Anda melalui layanan distribusi yang cepat, aman, profesional, dan terpercaya. Diskusikan kebutuhan pengiriman Anda bersama tim kami, dan temukan solusi logistik yang sesuai dengan kebutuhan bisnis Anda.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4 pt-4">
+                    <a href="#contact" class="bg-slate-950 border border-[#d4af37]/60 hover:border-[#d4af37] text-white font-bold text-sm px-8 py-4 rounded-xl shadow-xl transition-all">Request Quote</a>
+                    <a href="#contact" class="bg-slate-800/40 hover:bg-slate-800/80 border border-slate-700/60 text-slate-300 font-bold text-sm px-8 py-4 rounded-xl transition-all hover:border-[#d4af37] transition-colors group">Contact Us</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 16. CONTACT SECTION & INTERACTIVE FORM (Clean White Base) -->
+        <section id="contact" class="py-24 px-6 bg-white overflow-hidden">
+            <div class="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16">
+                <!-- Info Display Grid Left Layout Column -->
+                <div class="lg:col-span-5 space-y-10">
+                    <div class="space-y-4">
+                        <span class="text-slate-500 font-bold uppercase tracking-widest text-xs flex items-center gap-2">
+                            <span class="w-6 h-[1px] bg-[#d4af37]"></span> Contact Us
+                        </span>
+                        <h2 class="text-3xl md:text-4xl font-black text-[#0f172a] tracking-tight">Let's Discuss Your Logistics Needs</h2>
+                        <p class="text-[#334155] text-sm leading-relaxed">
+                            Apabila Anda membutuhkan solusi logistik yang cepat, aman, dan terpercaya, tim PT. Kenran Logistic Solution siap membantu. Hubungi kami melalui informasi kontak berikut atau kirimkan kebutuhan pengiriman Anda melalui formulir yang tersedia. Kami akan merespons secepat mungkin.
+                        </p>
+                    </div>
+
+                    <!-- Company Operations Metainfo -->
+                    <div class="space-y-4 border-t border-slate-100 pt-6">
+                        <div class="flex items-start space-x-3 text-sm">
+                            <span class="font-bold text-[#0f172a] shrink-0 w-20">Phone:</span>
+                            <span class="text-[#334155]">+62 819-0821-9715</span>
+                        </div>
+                        <div class="flex items-start space-x-3 text-sm">
+                            <span class="font-bold text-[#0f172a] shrink-0 w-20">WhatsApp:</span>
+                            <span class="text-[#334155]">+62 852-8484-2565</span><a href="https://wa.me/6285284842565" class="bg-[#25D366] border border-[#25D366] text-[#ffffff] text-xs px-3 py-1.5 rounded-lg font-medium transition-all hover:text-[#25D366] hover:bg-[#ffffff] transition-colors group">Call Us</a>
+                            
+                        </div>
+                        <div class="flex items-start space-x-3 text-sm">
+                            <span class="font-bold text-[#0f172a] shrink-0 w-20">Email:</span>
+                            <span class="text-[#334155]">logistickag@gmail.com</span>
+                        </div>
+                        <div class="flex items-start space-x-3 text-sm">
+                            <span class="font-bold text-[#0f172a] shrink-0 w-20">Website:</span>
+                            <a href="www.kenranlogisticsolution.com" class="text-[#334155] hover:text-[#d4af37] transition-colors">www.kenranlogisticsolution.com</a>
+                        </div>
+                    </div>
+
+                    <!-- Physical Office Business Addresses Stack -->
+                    <div class="space-y-3 border-t border-slate-100 pt-6">
+                        <h4 class="text-xs uppercase tracking-widest font-bold text-[#64748b]">Office Addresses</h4>
+                        <p class="text-[#334155] text-xs leading-relaxed font-medium">
+                            <span class="text-[#0f172a] font-bold block text-sm mb-1">Kantor Pusat:</span>
+                            Graha Asri 88, Jl. Raya Lengkong Kulon No.48, Kec. Pagedangan, Tangerang, Banten.
+                        </p>
+                        <p class="text-[#334155] text-xs leading-relaxed font-medium pt-1">
+                            <span class="text-[#0f172a] font-bold block text-sm mb-1">Kantor Cabang:</span>
+                            Jl. Buaran Raya No. 87, Ciater, Kec. Serpong, Kota Tangerang Selatan, Banten 15310.
+                        </p>
+                    </div>
+
+                    <div class="p-4 bg-[#f8fafc] border border-[#e2e8f0] rounded-xl space-y-2 text-xs font-semibold text-[#334155]">
+                        <div class="text-[#64748b] uppercase font-bold tracking-wider text-[10px] mb-1">Operational Hours</div>
+                        <div class="flex justify-between"><span>Monday - Friday</span> <span>08.00 - 17.00</span></div>
+                        <div class="flex justify-between"><span>Saturday</span> <span>08.00 - 15.00</span></div>
+                        <!-- Accent color allocation used properly on closed warning state -->
+                        <div class="flex justify-between text-red-600 font-bold"><span>Sunday</span> <span>Closed</span></div>
+                    </div>
+
+                    <div class="w-full aspect-[16/9] rounded-2xl overflow-hidden border border-[#e2e8f0] shadow-md transition-all duration-300 hover:shadow-xl hover:border-[#d4af37]/40">
+
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.849313986664!2d106.63201491081637!3d-6.283530761479578!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69fb003fb237c3%3A0x135dcc9718cd01dc!2sPT%20KENRAN%20LOGISTIC%20SOLUTION%20-%20KAG%20LOGISTICS!5e0!3m2!1sen!2sid!4v1783845144755!5m2!1sen!2sid"
+                            class="w-full h-full"
+                            style="border:0;"
+                               allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+          
+                    </div>
+                </div>
+
+                <!-- Interactive Processing Form Column Layout Right -->
+                <div class="lg:col-span-7 bg-[#f8fafc] p-8 rounded-3xl border border-[#e2e8f0] shadow-sm relative">
+                    <form id="quotes-intake-form" class="space-y-6" onsubmit="handleFormSubmission(event)">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold uppercase tracking-wider text-[#334155] block">Full Name *</label>
+                                <input type="text" id="fullname" name="fullname" autocomplete="name" required class="w-full bg-white border border-[#e2e8f0] rounded-xl px-4 py-3 text-sm focus:border-[#d4af37] focus:outline-none transition-colors" placeholder="John Doe">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold uppercase tracking-wider text-[#334155] block">Company Name</label>
+                                <input type="text" id="company" name="company" autocomplete="organization" class="w-full bg-white border border-[#e2e8f0] rounded-xl px-4 py-3 text-sm focus:border-[#d4af37] focus:outline-none transition-colors" placeholder="PT. Sukses Selalu">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold uppercase tracking-wider text-[#334155] block">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" autocomplete="tel" required class="w-full bg-white border border-[#e2e8f0] rounded-xl px-4 py-3 text-sm focus:border-[#d4af37] focus:outline-none transition-colors" placeholder="081234567890">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold uppercase tracking-wider text-[#334155] block">Email Address *</label>
+                                <input type="email" id="email" name="email" autocomplete="email" required class="w-full bg-white border border-[#e2e8f0] rounded-xl px-4 py-3 text-sm focus:border-[#d4af37] focus:outline-none transition-colors" placeholder="john@company.com">
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold uppercase tracking-wider text-[#334155] block">Service Needed *</label>
+                            <select id="service" name="service" required class="w-full bg-white border border-[#e2e8f0] rounded-xl px-4 py-3 text-sm focus:border-[#d4af37] focus:outline-none transition-colors">
+                                <option value="">Select Service Category</option>
+                                <option value="Domestic Freight">Domestic Freight</option>
+                                <option value="Trucking & Cargo Services">Trucking & Cargo Services</option>
+                                <option value="Business Distribution">Business Distribution</option>
+                                <option value="Project Logistics">Project Logistics</option>
+                                <option value="Door to Door Service">Door to Door Service</option>
+                                <option value="Air Cargo Services">Air Cargo Services</option>
+                                <option value="Additional Support Services">Additional Support Services</option>
+                            </select>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold uppercase tracking-wider text-[#334155] block">Shipment Origin *</label>
+                                <input type="text" id="origin" name="origin" required class="w-full bg-white border border-[#e2e8f0] rounded-xl px-4 py-3 text-sm focus:border-[#d4af37] focus:outline-none transition-colors" placeholder="Jakarta">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold uppercase tracking-wider text-[#334155] block">Shipment Destination *</label>
+                                <input type="text" id="destination" name="destination" required class="w-full bg-white border border-[#e2e8f0] rounded-xl px-4 py-3 text-sm focus:border-[#d4af37] focus:outline-none transition-colors" placeholder="Palembang">
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold uppercase tracking-wider text-[#334155] block">Message Details *</label>
+                            <textarea id="message" name="message" required rows="4" class="w-full bg-white border border-[#e2e8f0] rounded-xl px-4 py-3 text-sm focus:border-[#d4af37] focus:outline-none transition-colors" placeholder="Explain your shipment volume, size, frequency, or project requests..."></textarea>
+                        </div>
+
+                        <div id="form-feedback" class="hidden text-xs p-4 rounded-xl font-bold"></div>
+
+                        <!-- Submit Button Base: Primary Royal Blue Action Color -->
+                        <button type="submit" id="form-submit-btn" class="w-full bg-slate-900 border border-[#d4af37]/40 hover:border-[#d4af37] text-white font-bold text-xs uppercase tracking-wider py-4 rounded-xl transition-all shadow-md cursor-pointer select-none">Send Request</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 17. CORPORATE FOOTER -->
+    <footer class="bg-slate-950 text-slate-400 pt-16 pb-8 px-6 border-t border-slate-900 overflow-hidden">
+        <div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-slate-800">
+            <!-- Col 1: Corporate Profile Identity Summaries -->
+            <div class="lg:col-span-4 space-y-6">
+                <img
+                        src="assets/logo-kag-logistic.png"
+                        alt="KAG Logistic"
+                        class="w-[220px] h-auto">
+
+                <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
+                    PT. Kenran Logistic Solution merupakan perusahaan jasa logistik yang menyediakan solusi distribusi yang cepat, aman, dan terpercaya untuk mendukung pertumbuhan bisnis pelanggan di berbagai wilayah Indonesia.
+                </p>
+                <div class="flex space-x-4 pt-1 text-slate-500 font-bold text-xs font-mono">
+                    <a href="#" class="hover:text-[#d4af37] transition-colors">LinkedIn</a>
+                    <a href="#" class="hover:text-[#d4af37] transition-colors">Instagram</a>
+                    <a href="#" class="hover:text-[#d4af37] transition-colors">Facebook</a>
+                    <a href="#" class="hover:text-[#d4af37] transition-colors">TikTok</a>
+                </div>
+            </div>
+
+            <!-- Col 2: Navigation Hierarchy Links -->
+            <div class="lg:col-span-2 space-y-4">
+                <h4 class="text-white font-bold text-sm tracking-wide">Quick Links</h4>
+                <ul class="text-xs space-y-2.5 font-medium">
+                    <li><a href="#home" class="hover:text-[#d4af37] transition-colors">Home</a></li>
+                    <li><a href="#about" class="hover:text-[#d4af37] transition-colors">About</a></li>
+                    <li><a href="#services" class="hover:text-[#d4af37] transition-colors">Services</a></li>
+                    <li><a href="#coverage" class="hover:text-[#d4af37] transition-colors">Coverage</a></li>
+                    <li><a href="#why-us" class="hover:text-[#d4af37] transition-colors">Partners</a></li>
+                    <li><a href="#contact" class="hover:text-[#d4af37] transition-colors">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 3: Service Distribution Allocations -->
+            <div class="lg:col-span-3 space-y-4">
+                <h4 class="text-white font-bold text-sm tracking-wide">Services Suite</h4>
+                <ul class="text-xs space-y-2.5 font-medium">
+                    <li><a href="#services" class="hover:text-[#d4af37] transition-colors">Domestic Freight</a></li>
+                    <li><a href="#services" class="hover:text-[#d4af37] transition-colors">Trucking & Land Cargo</a></li>
+                    <li><a href="#services" class="hover:text-[#d4af37] transition-colors">Air Cargo Services</a></li>
+                    <li><a href="#services" class="hover:text-[#d4af37] transition-colors">Business Distribution</a></li>
+                    <li><a href="#services" class="hover:text-[#d4af37] transition-colors">Project Logistics</a></li>
+                    <li><a href="#services" class="hover:text-[#d4af37] transition-colors">Additional Services</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 4: Rapid Contact Vector Info -->
+            <div class="lg:col-span-3 space-y-4">
+                <h4 class="text-white font-bold text-sm tracking-wide">Contact Details</h4>
+                <ul class="text-xs space-y-3 font-medium">
+                    <li class="leading-relaxed">Graha Asri 88, Jl. Raya Lengkong Kulon No.48, Pagedangan, Tangerang, Banten</li>
+                    <li>Phone: 081908219715</li>
+                    <li>Email: logistickag@gmail.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-[1440px] mx-auto pt-6 flex flex-col sm:flex-row justify-between items-center text-[11px] font-medium gap-2 text-slate-500">
+            <div>&copy; 2026 PT. Kenran Logistic Solution. All Rights Reserved.</div>
+            <div>Website by Vexa Webstudio</div>
+            <div class="font-mono uppercase tracking-widest text-[9px] text-[#d4af37]/70">Your Reliable Integrated Logistics Partner</div>
+        </div>
+    </footer>
+
+    <!-- Email JS Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <!-- LOGICAL ARCHITECTURE IMPLEMENTATION SCRIPTS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script>
+
+        emailjs.init({
+            publicKey: "-1wUQ3la2eC7al6ZM",
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // Mobile Menu
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // FAQ
+            const faqItems = document.querySelectorAll(".faq-item");
+
+            faqItems.forEach(item => {
+                const button = item.querySelector("button");
+
+                button.addEventListener("click", () => {
+
+                    faqItems.forEach(faq => {
+                        if (faq !== item) faq.classList.remove("active");
+                    });
+
+                    item.classList.toggle("active");
+                });
+            });
+
+            // GSAP
+            gsap.registerPlugin(ScrollTrigger);
+
+            gsap.from('header', {
+                y: -50,
+                opacity: 0,
+                duration: 1,
+                ease: 'power3.out'
+            });
+
+            document.querySelectorAll('.reveal-fade-up').forEach(element => {
+                gsap.from(element, {
+                    scrollTrigger: {
+                        trigger: element,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    },
+                    y: 40,
+                    opacity: 0,
+                    duration: 1,
+                    ease: 'power3.out'
+                });
+            });
+
+        });
+
+        function handleFormSubmission(e) {
+            e.preventDefault();
+
+            const form = document.getElementById('quotes-intake-form');
+            const submitBtn = document.getElementById('form-submit-btn');
+            const feedback = document.getElementById('form-feedback');
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Processing Intake...';
+
+            emailjs.sendForm(
+                "service_df93e0v",
+                "template_e9jbcj8",
+                form
+            )
+
+            .then(() => {
+
+                feedback.classList.remove('hidden');
+
+                feedback.classList.add(
+                    'bg-slate-900',
+                    'text-[#d4af37]',
+                    'border',
+                    'border-[#d4af37]/30'
+                );
+
+                feedback.textContent =
+                    'Success! Your quote request has been received.';
+
+                form.reset();
+
+                submitBtn.disabled = false;
+
+                submitBtn.textContent =
+                    'Send Request';
+
+            })
+
+            .catch((error)=>{
+
+                console.error(error);
+
+                feedback.classList.remove('hidden');
+
+                feedback.classList.add(
+                    'bg-red-900',
+                    'text-white',
+                    'border',
+                    'border-red-500'
+                );
+
+                feedback.textContent =
+                    'Failed to send request. Please try again.';
+
+                submitBtn.disabled = false;
+
+                submitBtn.textContent =
+                    'Send Request';
+
+            });
+        }
+    </script>
+</body>
+</html>
