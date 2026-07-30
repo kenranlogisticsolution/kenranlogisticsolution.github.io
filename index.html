@@ -1,3 +1,5 @@
+<!-- WEBSITE BY VEXA WEBSTUDIO -->
+
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 <head>
@@ -95,27 +97,64 @@
             </a>
             <nav class="hidden md:flex space-x-8 text-sm font-medium">
                 <a href="#home" class="text-[#d4af37] nav-link-hover transition-colors">Home</a>
-                <a href="#about" class="text-slate-300 hover:text-white nav-link-hover transition-colors">About</a>
+                <!-- About Dropdown -->
+                <div class="relative group">
+
+                    <a href="#about"
+                    class="flex items-center gap-1 text-slate-300 nav-link-hover hover:text-white transition-colors">
+                        About
+                        <svg class="w-4 h-4 transition-transform duration-300 group-hover:rotate-180"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </a>
+
+                    <!-- Dropdown -->
+                    <div class="absolute left-0 mt-3 w-60 bg-white rounded-2xl shadow-xl border border-slate-200
+                                opacity-0 invisible group-hover:opacity-100 group-hover:visible
+                                transition-all duration-300 z-50">
+
+                        <a href="#foreword" class="block px-5 py-3 hover:bg-slate-50">
+                            Foreword
+                        </a>
+
+                        <a href="#visionmission" class="block px-5 py-3 hover:bg-slate-50">
+                            Vision & Mission
+                        </a>
+
+                        <a href="#values" class="block px-5 py-3 hover:bg-slate-50">
+                            Core Values
+                        </a>
+                    </div>
+                </div>
+
                 <!-- Services Dropdown -->
                 <div class="relative group">
 
-                    <a href="#services" class="flex items-center gap-1 text-slate-300 hover:text-white transition-colors">
+                    <a href="#services" 
+                    class="flex items-center gap-1 text-slate-300 nav-link-hover hover:text-white transition-colors">
 
-                            Services
+                        Services
 
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                class="w-4 h-4 transition-transform duration-300 group-hover:rotate-180"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="w-4 h-4 transition-transform duration-300 group-hover:rotate-180"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor">
 
-                                <path stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M19 9l-7 7-7-7"/>
+                            <path stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M19 9l-7 7-7-7"/>
 
-                            </svg>
+                        </svg>
 
+                    <!-- Dropdown -->
                     <div class="absolute left-0 mt-3 w-64 bg-white rounded-2xl shadow-xl border border-slate-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 overflow-hidden">
 
                         <a href="#trucking" class="block px-5 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-[#d4af37]">
@@ -131,6 +170,7 @@
                 </div>
                 <a href="#coverage" class="text-slate-300 hover:text-white nav-link-hover transition-colors">Coverage</a>
                 <a href="#why-us" class="text-slate-300 hover:text-white nav-link-hover transition-colors">Why Us</a>
+                <a href="#faq" class="text-slate-300 hover:text-white nav-link-hover transition-colors">FAQ</a>
                 <a href="#contact" class="text-slate-300 hover:text-white nav-link-hover transition-colors">Contact</a>
             </nav>
             <div class="hidden md:flex">
@@ -148,8 +188,8 @@
             <a href="#services" class="block text-slate-300 py-2 hover:text-[#d4af37]">Services</a>
             <a href="#coverage" class="block text-slate-300 py-2 hover:text-[#d4af37]">Coverage</a>
             <a href="#why-us" class="block text-slate-300 py-2 hover:text-[#d4af37]">Why Us</a>
+            <a href="#faq" class="block text-slate-300 py-2 hover:text-[#d4af37]">FAQ</a>
             <a href="#contact" class="block text-slate-300 py-2 hover:text-[#d4af37]">Contact</a>
-            <a href="#contact" class="block w-full text-center bg-slate-950 text-white border border-[#d4af37]/30 py-3 rounded-lg font-semibold text-xs uppercase tracking-wider">Request Quote</a>
         </div>
     </header>
 
@@ -274,20 +314,60 @@
             </div>
         </section>
 
+        <!-- 4. FOREWORD SECTION (Clean White Base) -->
+        <section id="foreword" class="py-24 px-6 bg-white overflow-hidden">
+            <div class="space-y-2 bg-white border border-slate-200 p-6 rounded-2xl shadow-md border-l-4 border-l-[#d4af37]">
+                <div class="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-star">
+                    <!-- About Side Media Layout Column -->
+                    <div class="lg:col-span-5 reveal-fade-up">
+                        <div class="w-full aspect-[5/6] rounded-3xl border border-slate-200 shadow-inner overflow-hidden relative group bg-slate-50">
+
+                            <img
+                                src="assets/daltonfmunthe.png"
+                                alt="Dalton F. Munthe | Director"
+                                class="w-full h-full object-cover rounded-3xl">
+
+                        </div>
+                    </div>
+
+                    <!-- Text Presentation Content Column -->
+                    <div class="lg:col-span-7 space-y-8 reveal-fade-up">
+                        <div class="space-y-3 relative">
+                            <span class="text-slate-500 font-bold uppercase tracking-widest text-xs flex items-center gap-2">
+                                <span class="w-6 h-[1px] bg-[#d4af37]"></span> Foreword
+                            </span>
+                            <h2 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+                                Message from the Director.
+                            </h2>
+                        </div>
+                        <p class="text-slate-600 leading-relaxed text-base">
+                            Puji syukur kita panjatkan kepada <span class="font-semibold">Tuhan Yang Maha Esa atas</span> segala rahmat dan karunia-Nya, sehingga <span class="font-semibold">PT Kenran Logistic Solution</span> dapat terus berkembang dan memberikan kontribusi terbaik dalam <span class="font-semibold">industri logistik di Indonesia.</span>
+                        </p>
+                        <p class="text-slate-600 leading-relaxed text-base">
+                            Di tengah perkembangan dunia usaha yang semakin dinamis, kebutuhan akan layanan logistik yang <span class="font-semibold">cepat, aman, dan terpercaya</span> menjadi faktor penting dalam mendukung pertumbuhan bisnis. Sebagai perusahaan yang berkomitmen pada kualitas layanan, <span class="font-semibold">PT Kenran Logistic Solution</span> hadir untuk memberikan <span class="font-semibold">solusi logistik yang efektif, efisien, dan berorientasi pada kepuasan pelanggan.</span>
+                        </p>
+                        <p class="text-slate-600 leading-relaxed text-base">
+                            Kami percaya bahwa keberhasilan sebuah perusahaan tidak hanya diukur dari pencapaian bisnis, tetapi juga dari kemampuan membangun <span class="font-semibold">kepercayaan</span>, menjaga <span class="font-semibold">integritas</span>, dan menciptakan <span class="font-semibold">hubungan jangka panjang</span> dengan pelanggan, mitra, serta seluruh pemangku kepentingan. Oleh karena itu, kami senantiasa mengedepankan <span class="font-semibold">profesionalisme, inovasi, dan pelayanan terbaik</span> dalam setiap aktivitas operasional yang kami jalankan.
+                        </p>
+                        <p class="text-slate-600 leading-relaxed text-base">
+                            <span class="font-semibold">PT Kenran Logistic Solution</span> berkomitmen untuk terus berkembang menjadi <span class="font-semibold">perusahaan logistik yang unggul, adaptif terhadap perubahan</span>, serta mampu memberikan <span class="font-semibold">nilai tambah</span> bagi pelangga melalui solusi <span class="font-semibold">yang terintegrasi dan berkelanjutan.</span>
+                        </p>
+                        <p class="text-slate-600 leading-relaxed text-base">
+                            Atas kepercayaan dan dukungan yang telah diberikan kepada <span class="font-semibold">PT Kenran Logistic Solution</span>, kami mengucapkan terima kasih. Semoga <span class="font-semibold">kerja sama yang telah terjalin</span> dapat terus berkembang dan memberikan manfaat bagi semua pihak.
+                        </p>
+                        <p class="text-slate-600 leading-relaxed text-base">
+                            Salam Hormat,
+                            <br>
+                            <span class=font-bold>Dalton F. Munthe <br>Direktur</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- 4. ABOUT SECTION (Clean White Base) -->
         <section id="about" class="py-24 px-6 bg-white overflow-hidden">
             <div class="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-                <!-- About Side Media Layout Column -->
-                <div class="lg:col-span-5 reveal-fade-up">
-                    <div class="w-full aspect-[5/6] rounded-3xl border border-slate-200 shadow-inner overflow-hidden relative group bg-slate-50">
-
-                        <img
-                            src="assets/about.png"
-                            alt="About Us"
-                            class="w-full h-full object-cover rounded-3xl">
-
-                    </div>
-                </div>
 
                 <!-- Text Presentation Content Column -->
                 <div class="lg:col-span-7 space-y-8 reveal-fade-up">
@@ -325,11 +405,22 @@
                         </div>
                     </div>
                 </div>
+                <!-- About Side Media Layout Column -->
+                <div class="lg:col-span-5 reveal-fade-up">
+                    <div class="w-full aspect-[5/6] rounded-3xl border border-slate-200 shadow-inner overflow-hidden relative group bg-slate-50">
+
+                        <img
+                            src="assets/about.png"
+                            alt="About Us"
+                            class="w-full h-full object-cover rounded-3xl">
+
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- 5. CORE VALUES SECTION (7% Light Gray Background) -->
-        <section class="py-24 px-6 bg-slate-50 border-y border-slate-200/60 overflow-hidden">
+        <section id="values" class="py-24 px-6 bg-slate-50 border-y border-slate-200/60 overflow-hidden">
             <div class="max-w-[1440px] mx-auto space-y-16">
                 <div class="max-w-3xl space-y-4">
                     <span class="text-slate-500 font-bold uppercase tracking-widest text-xs flex items-center gap-2">
@@ -406,7 +497,107 @@
                 </div>
             </div>
         </section>
+        <section id="visionmission" class="py-24 px-6 bg-white overflow-hidden">
+            <div class="space-y-2 bg-white border border-slate-200 p-6 rounded-2xl shadow-md">
 
+                <div class="max-w-[1440px] mx-auto space-y-12">
+
+                    <!-- Heading -->
+                    <div class="max-w-3xl space-y-4">
+                        <span class="text-slate-500 font-bold uppercase tracking-widest text-xs flex items-center gap-2">
+                            <span class="w-6 h-[1px] bg-[#d4af37]"></span>
+                            Vision & Mission
+                        </span>
+
+                        <h2 class="text-3xl md:text-4xl font-black text-[#0f172a] tracking-tight">
+                            Our Foundation & Direction
+                        </h2>
+                    </div>
+
+                    <!-- Vision -->
+                    <div class="bg-gradient-to-r from-[#0f172a] to-[#162238] rounded-3xl p-10 md:p-14 shadow-md border-l-4 border-l-[#d4af37] relative hover:border-[#d4af37] hover:shadow-xl transition overflow-hidden">
+
+                        <div class="absolute -right-10 -top-10 w-56 h-56 bg-[#d4af37]/10 blur-3xl rounded-full"></div>
+
+                        <div class="relative z-10 max-w-4xl">
+
+                            <span class="text-[#d4af37] uppercase tracking-[0.3em] text-xs font-bold">
+                                Our Vision
+                            </span>
+
+                            <h3 class="mt-5 text-2xl md:text-3xl font-bold text-white leading-relaxed italic">
+                                "Menjadi perusahaan logistik terpercaya dan profesional
+                                yang memberikan solusi distribusi terintegrasi,
+                                inovatif, dan bernilai tambah untuk mendukung pertumbuhan
+                                bisnis pelanggan di seluruh Indonesia."
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Mission -->
+                    <div>
+
+                        <div class="flex items-center gap-3 mb-8">
+                            <div class="w-10 h-[2px] bg-[#d4af37]"></div>
+                            <h3 class="text-2xl font-bold text-[#0f172a]">
+                                Our Mission
+                            </h3>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                            <div class="bg-white border border-slate-200 rounded-2xl p-6 border-t-4 border-t-[#d4af37] shadow-sm hover:border-[#d4af37] hover:shadow-xl transition">
+                                <div class="text-[#d4af37] text-2xl font-bold mb-4">01</div>
+                                <p class="text-slate-600 leading-relaxed">
+                                    Memberikan layanan logistik yang cepat, aman, dan terpercaya dengan mengutamakan kepuasan pelanggan.
+                                </p>
+                            </div>
+
+                            <div class="bg-white border border-slate-200 rounded-2xl p-6 border-t-4 border-t-[#d4af37] shadow-sm hover:border-[#d4af37] hover:shadow-xl transition">
+                                <div class="text-[#d4af37] text-2xl font-bold mb-4">02</div>
+                                <p class="text-slate-600 leading-relaxed">
+                                    Mengembangkan solusi logistik yang efektif dan efisien sesuai kebutuhan pelanggan serta perkembangan industri.
+                                </p>
+                            </div>
+
+                            <div class="bg-white border border-slate-200 rounded-2xl p-6 border-t-4 border-t-[#d4af37] shadow-sm hover:border-[#d4af37] hover:shadow-xl transition">
+                                <div class="text-[#d4af37] text-2xl font-bold mb-4">03</div>
+                                <p class="text-slate-600 leading-relaxed">
+                                    Membangun kemitraan yang kuat dan berkelanjutan dengan pelanggan, mitra bisnis, serta seluruh pemangku kepentingan.
+                                </p>
+                            </div>
+
+                            <div class="bg-white border border-slate-200 rounded-2xl p-6 border-t-4 border-t-[#d4af37] shadow-sm hover:border-[#d4af37] hover:shadow-xl transition">
+                                <div class="text-[#d4af37] text-2xl font-bold mb-4">04</div>
+                                <p class="text-slate-600 leading-relaxed">
+                                    Meningkatkan kompetensi SDM melalui budaya kerja yang profesional, disiplin, dan berintegritas.
+                                </p>
+                            </div>
+
+                            <div class="bg-white border border-slate-200 rounded-2xl p-6 border-t-4 border-t-[#d4af37] shadow-sm hover:border-[#d4af37] hover:shadow-xl transition">
+                                <div class="text-[#d4af37] text-2xl font-bold mb-4">05</div>
+                                <p class="text-slate-600 leading-relaxed">
+                                    Mengoptimalkan teknologi dan inovasi untuk meningkatkan kualitas layanan serta efisiensi operasional.
+                                </p>
+                            </div>
+
+                            <div class="bg-white border border-slate-200 rounded-2xl p-6 border-t-4 border-t-[#d4af37] shadow-sm hover:border-[#d4af37] hover:shadow-xl transition">
+                                <div class="text-[#d4af37] text-2xl font-bold mb-4">06</div>
+                                <p class="text-slate-600 leading-relaxed">
+                                    Menjalankan usaha secara berkelanjutan dengan mengedepankan tanggung jawab sosial dan tata kelola perusahaan yang baik.
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
         <!-- 6. OUR SERVICES SECTION (Pure White Section) -->
         <section id="services" class="py-24 px-6 bg-white overflow-hidden">
             <div class="max-w-[1440px] mx-auto space-y-16">
@@ -828,7 +1019,7 @@
         </section>
 
         <!-- 12. STRATEGIC PARTNERS SECTION -->
-        <section class="py-10 px-5 bg-white border-b border-slate-100 overflow-hidden">
+        <section id="partner" class="py-10 px-5 bg-white overflow-hidden">
             <div class="max-w-[1440px] mx-auto space-y-12">
                 <div class="max-w-3xl space-y-3">
                     <span class="text-slate-500 font-bold uppercase tracking-widest text-xs flex items-center gap-2">
@@ -940,7 +1131,7 @@
         </section>
 
         <!-- 13. OUR CUSTOMERS SECTION -->
-        <section class="py-10 px-6 bg-white overflow-hidden">
+        <section id="customer" class="py-10 px-6 bg-white overflow-hidden">
             <div class="max-w-[1440px] mx-auto space-y-12">
                 <div class="max-w-3xl space-y-3">
                     <span class="text-slate-500 font-bold uppercase tracking-widest text-xs flex items-center gap-2">
@@ -1043,7 +1234,7 @@
         </section>
 
         <!-- 14. FREQUENTLY ASKED QUESTIONS (FAQ Accordion Component) -->
-        <section class="py-24 px-6 bg-slate-50 border-t border-slate-200/80 overflow-hidden">
+        <section id="faq" class="py-24 px-6 bg-slate-50 border-t border-slate-200/80 overflow-hidden">
             <div class="max-w-[1000px] mx-auto space-y-16">
                 <div class="text-center space-y-4">
                     <span class="text-slate-500 font-bold uppercase tracking-widest text-xs flex justify-center items-center gap-2">
@@ -1326,16 +1517,17 @@
             <div class="lg:col-span-3 space-y-4">
                 <h4 class="text-white font-bold text-sm tracking-wide">Contact Details</h4>
                 <ul class="text-xs space-y-3 font-medium">
-                    <li class="leading-relaxed">Graha Asri 88, Jl. Raya Lengkong Kulon No.48, Pagedangan, Tangerang, Banten</li>
+                    <li class="leading-relaxed"><a href="https://maps.app.goo.gl/Jo5aLgvy2iy24QJv7" class="hover:text-[#d4af37] transition-colors">Graha Asri 88, Jl. Raya Lengkong Kulon No.48, Pagedangan, Tangerang, Banten</a></li>
                     <li>Phone: 081908219715</li>
+                    <li>WhatsApp: <a href="https://wa.me/6285284842565" class="hover:text-[#25D366] transition-colors">085284842565</a></li>
                     <li>Email: logistickag@gmail.com</li>
-                </ul>
+                </ul> 
             </div>
         </div>
         <div class="max-w-[1440px] mx-auto pt-6 flex flex-col sm:flex-row justify-between items-center text-[11px] font-medium gap-2 text-slate-500">
             <div>&copy; 2026 PT. Kenran Logistic Solution. All Rights Reserved.</div>
             <div>Website by Vexa Webstudio</div>
-            <div class="font-mono uppercase tracking-widest text-[9px] text-[#d4af37]/70">Your Reliable Integrated Logistics Partner</div>
+            <div class="font-mono font-semibold uppercase tracking-widest text-[9px] text-[#d4af37]/70">Your Reliable Integrated Logistics Partner</div>
         </div>
     </footer>
 
@@ -1471,3 +1663,5 @@
     </script>
 </body>
 </html>
+
+<!-- WEBSITE BY VEXA WEBSTUDIO -->
